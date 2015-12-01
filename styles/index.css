@@ -33,6 +33,11 @@ header nav li a:hover {
   text-decoration: none;
 }
 
-#hide {
-  display: none;
+.category:first-letter
+{
+    text-transform: uppercase;
 }
+
+/*#hide {
+  display: none;
+}*/
