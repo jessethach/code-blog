@@ -1,0 +1,38 @@
+body img {
+  max-width: 500px;
+  max-height: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+/*Nav menu*/
+
+header nav ol {
+  margin: 0px;
+  padding: 15px 15px 15px 30px;
+  border-bottom: 1px solid #445878;
+}
+
+header nav ol li {
+  color: #31353D;
+  display: inline;
+  margin-right: 40px;
+  letter-spacing: 0.07em;
+  text-align: center;
+}
+
+header nav li a {
+  color: #31353D;
+  text-decoration: none;
+}
+
+header nav li a:hover {
+  color: #445878;
+  text-decoration: none;
+}
+
+#hide {
+  display: none;
+}
