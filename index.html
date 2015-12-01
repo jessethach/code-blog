@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>
 
     </title>
@@ -9,24 +10,35 @@
   <body>
     <header>
       <h1>
-
+        Jesse's Blog
       </h1>
 
       <nav>
-
-        <aside class="">
-
-        </aside>
-
+        <ul>
+          <li>Articles</li>
+          <li>About (coming soon!)</li>
+          <li>Twitter</li>
+          <li>Github</li>
+        </ul>
       </nav>
 
     </header>
-    <main>
-      <article class="">
+    <main class="article-home">
+      <article id="template">
 
-      </article>
+        <h1 class="title"></h1>
+        <p class="author">
+        </p>
 
-      <article class="">
+        <ul>
+          <li class="author-web"></li>
+          <li class="category"></li>
+          <li class="published"></li>
+        </ul>
+
+        <section class="body">
+
+        </section>
 
       </article>
     </main>
@@ -34,6 +46,9 @@
     <footer>
 
     </footer>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="scripts/index.js" type="text/javascript"></script>
+    <script src="scripts/blog.js" type="text/javascript"></script>
+    <script src="scripts/blogArticles.js" type="text/javascript"></script>
+    <script src="scripts/article.js" type="text/javascript"></script>
   </body>
 </html>
