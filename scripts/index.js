@@ -5,11 +5,11 @@ $(document).ready(function() {
 });
 
 //After lead-in paragraph, reveal only on button click
-// blog.shortenArticles = function () {
-//   $('article p:not(first-child)').hide();
-//   $('main').on('click', '.read.on', function(event) {
-//     event.preventDefault();
-//     $(this).parent().find('p').show(); //can also use fade in
-//     $(this).hide();
-//   });
-// }
+blog.shortenArticles = function () {
+  $('article p:not(first-child)').hide();
+  $('main').on('click', '.read-more', function(event) {
+    event.preventDefault();
+    $(this).siblings().find('p').show(); //can also use fade in
+    $(this).hide();
+  });
+};

@@ -9,12 +9,12 @@ blog.sortRawData = function() {
     if (a.publishedOn < b.publishedOn) {return 1;}
     return 0;
   });
-}
+};
 
 //For loop to call each object
 blog.render = function() {
   for (var i = 0; i < blog.rawData.length; i++) {
-  var art = new Article(blog.rawData[i]);
-  art.toHTML();
+    var art = new Article(blog.rawData[i]);
+    art.toHTML();
   }
-}
+};
