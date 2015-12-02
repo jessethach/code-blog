@@ -25,7 +25,6 @@ Article.prototype.toHTML = function () {
   $articleCopy.find('.body').html(this.articleBody);
   $articleCopy.find('.read-more').html('<a>Read More</a>');
   $('.article-home').append($articleCopy);
-  $('.filter-menu').val(this.category).html(this.category).appendTo('#filter-tool');
 };
 
 // Credit to http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array
