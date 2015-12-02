@@ -27,16 +27,14 @@
       <p>Words</p>
     </section>
     <main class="article-home container">
-      <form class="form-menu">
+      <form id="form-menu">
         <label for="list">Categories</label>
-        <select id="filter-tool">
-          <option class="categories"></option>
-          <!-- <option value="food">Food</option>
-          <option value="sports">Sports</option>
-          <option value="business">Business</option>
-          <option value="space">Space</option>
-          <option value="lifestyle">Lifestyle</option>
-          <option value="television">Television</option> -->
+        <select id="filter-cat">
+          <option class="categories" id="select-hold" value="none">Select</option>
+        </select>
+        <label for="list">Food</label>
+        <select id="filter-auth">
+          <option class="authors" id="select-hold" value="none">Select</option>
         </select>
       </form>
       <article id="template">
