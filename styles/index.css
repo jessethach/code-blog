@@ -3,8 +3,8 @@
       color: #4d4e53;
     }
     body img {
-      max-height:100px;
-      max-width: 75px;
+      max-height:75%;
+      max-width: 75%;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -40,6 +40,7 @@ header nav ol li {
   margin-right: 40px;
   letter-spacing: 0.07em;
   text-align: center;
+  flex: 1 100%;
 }
 
 header nav li a {
@@ -62,6 +63,10 @@ select {
 }
 
 /*Content organization*/
+
+.is-active {
+  color: red;
+}
 
 #template {
   display: none;

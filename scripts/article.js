@@ -28,6 +28,8 @@ var Article = function(obj) {
 //   return diffDays;
 // };
 
+// parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+
 Article.categories = [];
 Article.authors = [];
 

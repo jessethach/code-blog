@@ -8,4 +8,5 @@ $(document).ready(function() {
   blog.selectListCat();
   blog.selectListAuth();
   blog.aboutTab();
+  blog.articlesTab();
 });
