@@ -38,6 +38,12 @@ header nav li a:hover {
     text-transform: uppercase;
 }
 
-/*#hide {
+select {
+  display: inline;
+}
+
+/*Content organization*/
+
+#template {
   display: none;
-}*/
+}

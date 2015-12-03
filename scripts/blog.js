@@ -23,14 +23,14 @@ blog.render = function() {
 //Creating function to populate select menu with unique array of categories
 blog.toSelect = function (array) {
   for (var i = 0; i < array.length; i++) {
-    if (array === Article.categories) {
+    if (array === Article.categories) { //If array in the instance matched the unique categories array, then populate
       var $optFirst = $('<option></option>');
       var $categorySelect = $('#filter-cat');
       $optFirst.attr('value', array[i]);
       $optFirst.attr('id', array[i]);
       $optFirst.text(array[i]);
       $categorySelect.append($optFirst);
-    } else if (array === Article.authors) {
+    } else if (array === Article.authors) { //If array in the instance matched the unique categories array, then populate
       var $optSecond = $('<option></option>');
       var $authSelect = $('#filter-auth');
       $optSecond.attr('value', array[i]);
@@ -40,20 +40,6 @@ blog.toSelect = function (array) {
     }
   };
 };
-
-//Working on method to populate drop down menu
-// blog.chooseMenu = function (event) {
-//   var $chosen = $('Article.categories');
-//   console.log(Article.categories.value);
-//   if (Article.categories.value == $chosen) {
-//     alert('You must select a condition to continue');
-//   } else  {
-//     var chosenOne = chosen.options[chosen.selectedIndex].text;
-//     console.log(chosenOne);
-//   };
-// }
-
-
 
 //After lead-in paragraph, reveal only on button click
 blog.shortenArticles = function (event) {
@@ -65,4 +51,31 @@ blog.shortenArticles = function (event) {
   });
 };
 
-// $('div.body p:first-child').css("border", "red solid 3px")
+//Creating a select list event listeners
+blog.selectListCat = function() {
+  $('#filter-cat').change(function() {
+    console.log(this.value);
+    $('main').find('article').show();
+    $('#filter-auth').find('first-child').attr('selected', true);
+    $('main').find('article:not(:contains(' + this.value + '))').hide();
+  });
+};
+
+blog.selectListAuth = function() {
+  $('#filter-auth').change(function() {
+    console.log(this.value);
+    $('main').find('article').show();
+    $('#filter-cat').find('first-child').attr('selected', true);
+    $('main').find('article:not(:contains(' + this.value + '))').hide();
+  });
+};
+
+//Creating a tab hide method
+blog.aboutTab = function () {
+  $('#tab-about').hide();
+  $('main').on('click', '#about', function(event) {
+    event.preventDefault();
+    $('#tab-about').show();
+    $('#article-sect').fadeOut();
+  });
+};

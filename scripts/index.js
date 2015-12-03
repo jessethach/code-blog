@@ -5,4 +5,7 @@ $(document).ready(function() {
   blog.shortenArticles();
   blog.toSelect(Article.categories);
   blog.toSelect(Article.authors);
+  blog.selectListCat();
+  blog.selectListAuth();
+  blog.aboutTab();
 });
