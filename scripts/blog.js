@@ -1,4 +1,4 @@
-// Creating blog object
+// Creating empty articles array
 blog.articles = [];
 
 // Sorting the raw data using a callback method
@@ -16,22 +16,66 @@ blog.render = function() {
     var art = new Article(blog.rawData[i]);
     art.toHTML();
     Article.categories = Article.categories.unique();
+    Article.authors = Article.authors.unique();
   }
 };
 
-//Creating function to populate select menu
-Article.prototype.toSelect = function () {
-  if (this.category == Article.categories) {
-    // Vanilla Javascript
-    // var categorySelect = document.getElementById("filter-tool");
-    // var categoryOption = document.createElement("option");
-    // var categoryName = document.createTextNode(this.category);
-    // conditionOption.appendChild(categoryName);
-    // conditionListLocation.appendChild(conditionOption);
-    var $categorySelect = $('#filter-tool');
-    var $categoryOption = $('option').clone();
-    $categorySelect.removeAttr('id');
-    $('.filter-menu').val(this.category).html(this.category).appendTo('#filter-tool');
-    $categorySelect.find('.categories').html(this.category);
-  }
+//Creating function to populate select menu with unique array of categories
+blog.toSelect = function (array) {
+  for (var i = 0; i < array.length; i++) {
+    if (array === Article.categories) { //If array in the instance matched the unique categories array, then populate
+      var $optFirst = $('<option></option>');
+      var $categorySelect = $('#filter-cat');
+      $optFirst.attr('value', array[i]);
+      $optFirst.attr('id', array[i]);
+      $optFirst.text(array[i]);
+      $categorySelect.append($optFirst);
+    } else if (array === Article.authors) { //If array in the instance matched the unique categories array, then populate
+      var $optSecond = $('<option></option>');
+      var $authSelect = $('#filter-auth');
+      $optSecond.attr('value', array[i]);
+      $optSecond.attr('id', array[i]);
+      $optSecond.text(array[i]);
+      $authSelect.append($optSecond);
+    }
+  };
+};
+
+//After lead-in paragraph, reveal only on button click
+blog.shortenArticles = function (event) {
+  $('div.body p:not(:first-child)').hide();
+  $('main').on('click', '.read-more', function(event) {
+    event.preventDefault();
+    $(this).parent().find('p').show(); //can also use fade in
+    $(this).hide();
+  });
+};
+
+//Creating a select list event listeners
+blog.selectListCat = function() {
+  $('#filter-cat').change(function() {
+    console.log(this.value);
+    $('main').find('article').show();
+    $('#filter-auth').find('first-child').attr('selected', true);
+    $('main').find('article:not(:contains(' + this.value + '))').hide();
+  });
+};
+
+blog.selectListAuth = function() {
+  $('#filter-auth').change(function() {
+    console.log(this.value);
+    $('main').find('article').show();
+    $('#filter-cat').find('first-child').attr('selected', true);
+    $('main').find('article:not(:contains(' + this.value + '))').hide();
+  });
+};
+
+//Creating a tab hide method
+blog.aboutTab = function () {
+  $('#tab-about').hide();
+  $('main').on('click', '#about', function(event) {
+    event.preventDefault();
+    $('#tab-about').show();
+    $('#article-sect').fadeOut();
+  });
 };

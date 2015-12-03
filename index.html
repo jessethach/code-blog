@@ -9,46 +9,44 @@
     </title>
   </head>
   <body>
-    <header class="container">
-      <h1>
-        Jesse's Blog
-      </h1>
-      <nav>
-        <ol>
-          <li> <a id="some_id" class="optional_has_click">Articles</a></li>
-          <li> <a id="some_id" class="optional_has_click">About</a> (coming soon!)</li>
-          <li> <a href="https://twitter.com/jesse_thach">Twitter</a></li>
-          <li> <a href="https://github.com/jessethach">Github</a></li>
-        </ol>
-      </nav>
-    </header>
-    <section class= "tab-about hide container">
-      <h3>About me</h3>
-      <p>Words</p>
-    </section>
-    <main class="article-home container">
-      <form class="form-menu">
-        <label for="list">Categories</label>
-        <select id="filter-tool">
-          <option class="categories"></option>
-          <!-- <option value="food">Food</option>
-          <option value="sports">Sports</option>
-          <option value="business">Business</option>
-          <option value="space">Space</option>
-          <option value="lifestyle">Lifestyle</option>
-          <option value="television">Television</option> -->
-        </select>
-      </form>
-      <article id="template">
-        <h1 class="title"></h1>
-        <div class="author"></div>
-        <div class="author-web"></div>
-        <div class="category"></div>
-        <div class="published"></div>
-        <div class="body"></div>
-        <div class="read-more"></div>
-      </article>
-    </main>
+      <main class="container">
+        <header>
+          <h1>
+            Jesse's Blog
+          </h1>
+          <nav>
+            <ol>
+              <li> <a id="some_id" class="optional_has_click">Articles</a></li>
+              <li> <a id="about" class="optional_has_click">About</a> (coming soon!)</li>
+              <li> <a href="https://twitter.com/jesse_thach">Twitter</a></li>
+              <li> <a href="https://github.com/jessethach">Github</a></li>
+            </ol>
+          </nav>
+        </header>
+        <section class= "hide container" id="tab-about">
+          <h3>About me</h3>
+          <p>Words</p>
+        </section>
+        <section class="article-home" id="article-sect">
+          <form class="row" id="form-menu">
+            <select class="three columns" id="filter-cat">
+              <option class="categories" id="select-hold" value="none">--Filter by category--</option>
+            </select>
+            <select class="three columns" id="filter-auth">
+              <option class="authors" id="select-hold" value="none">--Filter by author--</option>
+            </select>
+          </form>
+          <article id="template">
+            <h1 class="title"></h1>
+            <div class="author"></div>
+            <div class="author-web"></div>
+            <div class="category"></div>
+            <div class="published"></div>
+            <div class="body"></div>
+            <div class="read-more"></div>
+          </article>
+      </section>
+      </main>
     <footer>
 
     </footer>
