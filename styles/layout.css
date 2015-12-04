@@ -1,6 +1,9 @@
 /* Mobile first
 ––––––––––––––––––––––––––––––––––––––––––––––––––*/
 /*Header and navigation*/
+header {
+  background-color: #92CDCF;
+}
 
 header ol {
   margin: 0px;
@@ -18,7 +21,6 @@ header li {
 }
 
 /*Main body*/
-
 body {
   color: #4d4e53;
 }
@@ -31,13 +33,11 @@ body img {
   padding: 1em;
 }
 
-article .post {
-  display: flex;
+.post {
   flex-flow: row wrap;
   justify-content: space-around;
   margin: 1em 0 1em 0;
-  max-width: 30%;
-  background-color: red;
+  max-width: 100%;
 }
 
 .title {
@@ -46,6 +46,11 @@ article .post {
 
 article .body {
   margin-top:1em;
+}
+
+/*About section*/
+.about-me {
+  padding-top: 1em;
 }
 
 /* Desktop

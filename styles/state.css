@@ -10,13 +10,20 @@ header a {
 }
 
 header a:hover {
-  color: #445878;
+  color: #fff;
   text-decoration: none;
 }
 
 /*About tab default hidden*/
 .hide {
   display: none;
+}
+
+/* Form
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+select {
+  display: inline;
+  margin-top: 2em;
 }
 
 .category:first-letter
