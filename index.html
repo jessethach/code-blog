@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href="styles/skeleton.css" />
     <link rel="stylesheet" type="text/css" href="styles/layout.css" />
     <link rel="stylesheet" type="text/css" href="styles/state.css" />
-    <link rel="stylesheet" type="text/css" href="styles/module.css" />
+    <!-- Hamburger menu mod -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/module.css" /> -->
     <title>
       Jess Blog
     </title>
     <script id="entry-template" type="text/article-template">
       <article class="entry post">
-        <h1 class="title">{{{blogTitle}}}</h1>
+        <h3 class="title">{{{blogTitle}}}</h3>
         <div class="author">{{author}}</div>
         <div class="author-web"><a>{{{authorUrl}}}</a></div>
         <div class="category">{{category}}</div>
@@ -26,24 +27,27 @@
     </script>
   </head>
   <body>
-      <main class="container">
+      <main class="container site-wrap">
         <header>
           <h1>
             Jesse's Blog
           </h1>
           <nav>
             <span="icon-menu"></span>
-            <ol>
-              <li class="icon-home"> <a id="articles-tab" class="optional_has_click">Articles</a></li>
-              <li class="icon-about"> <a id="about" class="optional_has_click">About</a></li>
-              <li class="icon-twitter"> <a href="https://twitter.com/jesse_thach">Twitter</a></li>
-              <li class="icont-git"> <a href="https://github.com/jessethach">Github</a></li>
+            <ol class="navigation">
+              <li class="icon-home nav-item"> <a id="articles-tab" class="optional_has_click">Articles</a></li>
+              <li class="icon-about nav-item"> <a id="about" class="optional_has_click">About</a></li>
+              <li class="icon-twitter nav-item"> <a href="https://twitter.com/jesse_thach">Twitter</a></li>
+              <li class="icont-git nav-item"> <a href="https://github.com/jessethach">Github</a></li>
             </ol>
+            <!-- For hamburger menu mod -->
+            <!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger"></label> -->
           </nav>
         </header>
-        <section class= "hide container" id="tab-about">
+        <section class= "hide about-me" id="tab-about">
           <h3>About me</h3>
-          <p>Words</p>
+          <p>I love to build things.</p>
         </section>
         <section class="article-home" id="article-sect">
           <form class="row" id="form-menu">

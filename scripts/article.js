@@ -6,11 +6,7 @@ var Article = function(obj) {
   this.category = obj.category;
   this.publishedOn = obj.publishedOn;
   this.articleBody = obj.articleBody;
-  // this.age = this.postAge(this.publishedOn);
 };
-
-//Create Article method to calculate age of blog post
-// parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
 
 Article.categories = [];
 Article.authors = [];
@@ -19,7 +15,7 @@ Article.authors = [];
 Article.prototype.toHTML = function () {
   Article.categories.push(this.category);
   Article.authors.push(this.author);
-  this.publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  this.publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000); //Credit to Ivan Storck
   console.log(this.publishedOn);
   // var $articleCopy = $('#template').clone();
   // $articleCopy.removeAttr('id');

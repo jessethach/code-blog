@@ -43,6 +43,8 @@ blog.toSelect = function (array) {
 
 //After lead-in paragraph, reveal only on button click
 blog.shortenArticles = function (event) {
+  $('.read-more').css( 'cursor', 'pointer' );
+  $('.author-web').css( 'cursor', 'pointer' );
   $('div.body p:not(:first-child)').hide();
   $('main').on('click', '.read-more', function(event) {
     event.preventDefault();
@@ -87,6 +89,7 @@ blog.selectListAuth = function() {
 
 //Creating a tab method
 blog.aboutTab = function () {
+  $('.nav-item').css( 'cursor', 'pointer' );
   $('#tab-about').hide();
   $('main').on('click', '#about', function(event) {
     event.preventDefault();
@@ -94,7 +97,7 @@ blog.aboutTab = function () {
     $('#article-sect').fadeOut();
   });
 };
-//Creating articles method
+//Creating articles tab method
 blog.articlesTab = function () {
   // $('#tab-about').hide();
   $('main').on('click', '#articles-tab', function(event) {
