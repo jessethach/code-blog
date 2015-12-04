@@ -64,6 +64,7 @@ blog.selectListCat = function() {
       });
     } else {
     $('main').find('article:not(:contains(' + this.value + '))').hide();
+    //need to find category class
     }
   });
 };

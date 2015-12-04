@@ -1,0 +1,70 @@
+/* Mobile first
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*Header and navigation*/
+
+header ol {
+  margin: 0px;
+  padding: 15px 15px 15px 30px;
+  border-bottom: 1px solid #445878;
+}
+
+header li {
+  color: #31353D;
+  display: inline;
+  margin-right: 40px;
+  letter-spacing: 0.07em;
+  text-align: center;
+  flex: 1 100%;
+}
+
+/*Main body*/
+
+body {
+  color: #4d4e53;
+}
+body img {
+  max-height:75%;
+  max-width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+
+article .post {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 1em 0 1em 0;
+  max-width: 30%;
+  background-color: red;
+}
+
+.title {
+  padding: .75em 0 .25em 0;
+}
+
+article .body {
+  margin-top:1em;
+}
+
+/* Desktop
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+@media screen and (min-width:1000px) {
+  body img {
+    max-width: 50%;
+    max-height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+  }
+
+  article .body {
+    margin-top:10px;
+  }
+
+  .title {
+    padding: 20px 0 10px 0;
+  }
+}
