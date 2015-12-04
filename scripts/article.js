@@ -10,23 +10,7 @@ var Article = function(obj) {
 };
 
 //Create Article method to calculate age of blog post
-// Article.prototpe.postAge = function (date) {
-//   var today = new Date();
-//   var dd = parseInt(today.getDate());
-//   var mm = parseInt(month.getMonth());
-//   var yy = parseInt(year.getFullYear());
-//
-//   var year = parseInt(date.slice(0,4));
-//   var month = parseInt(date.slice(5,7));
-//   var day = parseInt(date.slice(8,10));
-//
-//   var oneDay = 24*60*60*100;
-//   var frstDate = new Date(year,month,day);
-//   var secondDate = new Date(year,month,day);
-//
-//   var diffDays = Math.round(Math.abs(firstDate.getTime() - secondDate.getTime()/(oneDay)));
-//   return diffDays;
-// };
+// parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
 
 Article.categories = [];
 Article.authors = [];
@@ -35,16 +19,21 @@ Article.authors = [];
 Article.prototype.toHTML = function () {
   Article.categories.push(this.category);
   Article.authors.push(this.author);
-  var $articleCopy = $('#template').clone();
-  $articleCopy.removeAttr('id');
-  $articleCopy.find('.title').html(this.blogTitle);
-  $articleCopy.find('.author').html('By <em>' + this.author + '</em>');
-  $articleCopy.find('.author-web').html('<a>' + this.authorUrl + '</a>');
-  $articleCopy.find('.category').html('Category: ' + this.category);
-  $articleCopy.find('.published').html(this.publishedOn);
-  $articleCopy.find('.body').html(this.articleBody);
-  $articleCopy.find('.read-more').html('<a>Read More</a>');
-  $('.article-home').append($articleCopy).find('article').addClass('five columns');
+  this.publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  console.log(this.publishedOn);
+  // var $articleCopy = $('#template').clone();
+  // $articleCopy.removeAttr('id');
+  // $articleCopy.find('.title').html(this.blogTitle);
+  // $articleCopy.find('.author').html('By <em>' + this.author + '</em>');
+  // $articleCopy.find('.author-web').html('<a>' + this.authorUrl + '</a>');
+  // $articleCopy.find('.category').html('Category: ' + this.category);
+  // $articleCopy.find('.published').html(this.publishedOn);
+  // $articleCopy.find('.body').html(this.articleBody);
+  // $articleCopy.find('.read-more').html('<a>Read More</a>');
+  var source = $('#entry-template').html();
+  var template = Handlebars.compile(source);
+  var html = template(this);
+  $('.article-home').append(html);
 };
 
 // Credit to http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array

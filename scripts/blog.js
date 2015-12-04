@@ -57,7 +57,15 @@ blog.selectListCat = function() {
     console.log(this.value);
     $('main').find('article').show();
     $('#filter-auth').find('first-child').attr('selected', true);
+    if (this.value === 'none') {
+      $(document).ready(function() {
+        $('#template').attr('style', 'display:none');
+        blog.render();
+      });
+    } else {
     $('main').find('article:not(:contains(' + this.value + '))').hide();
+    //need to find category class
+    }
   });
 };
 
@@ -66,16 +74,32 @@ blog.selectListAuth = function() {
     console.log(this.value);
     $('main').find('article').show();
     $('#filter-cat').find('first-child').attr('selected', true);
+    if (this.value === 'none') {
+      $(document).ready(function() {
+        $('#template').attr('style', 'display:none');
+        blog.render();
+      });
+    } else {
     $('main').find('article:not(:contains(' + this.value + '))').hide();
+    }
   });
 };
 
-//Creating a tab hide method
+//Creating a tab method
 blog.aboutTab = function () {
   $('#tab-about').hide();
   $('main').on('click', '#about', function(event) {
     event.preventDefault();
     $('#tab-about').show();
     $('#article-sect').fadeOut();
+  });
+};
+//Creating articles method
+blog.articlesTab = function () {
+  // $('#tab-about').hide();
+  $('main').on('click', '#articles-tab', function(event) {
+    event.preventDefault();
+    $('#article-sect').fadeIn();
+    $('#tab-about').fadeOut();
   });
 };

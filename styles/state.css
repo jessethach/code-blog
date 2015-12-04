@@ -1,0 +1,25 @@
+/* Default States
+––––––––––––––––––––––––––––––––––––––––––––––––––*/
+.is-active {
+  color: red;
+}
+
+header a {
+  color: #31353D;
+  text-decoration: none;
+}
+
+header a:hover {
+  color: #445878;
+  text-decoration: none;
+}
+
+/*About tab default hidden*/
+.hide {
+  display: none;
+}
+
+.category:first-letter
+{
+    text-transform: uppercase;
+}
