@@ -16,7 +16,7 @@ Article.prototype.toHTML = function () {
   Article.categories.push(this.category);
   Article.authors.push(this.author);
   this.publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000); //Credit to Ivan Storck
-  console.log(this.publishedOn);
+  // console.log(this.publishedOn);
   // var $articleCopy = $('#template').clone();
   // $articleCopy.removeAttr('id');
   // $articleCopy.find('.title').html(this.blogTitle);
