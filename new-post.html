@@ -27,33 +27,50 @@
     </script>
   </head>
   <body>
+    <main class="container site-wrap">
+      <header>
+        <h1>
+          Jesse's Blog
+        </h1>
+        <nav>
+          <span="icon-menu"></span>
+          <ol class="navigation">
+            <li class="icon-home nav-item"> <a id="articles-tab" class="optional_has_click">Articles</a></li>
+            <li class="icon-about nav-item"> <a id="about" class="optional_has_click">About</a></li>
+            <li class="icon-twitter nav-item"> <a href="https://twitter.com/jesse_thach">Twitter</a></li>
+            <li class="icont-git nav-item"> <a href="https://github.com/jessethach">Github</a></li>
+          </ol>
+          <!-- For hamburger menu mod -->
+          <!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+          <label for="nav-trigger"></label> -->
+        </nav>
+      </header>
+      <section id="new-post">
+        <form id="input-new-article">
+          <label>
+            <input type="text" id="article-title" placeholder="Title">
+          </label>
+          <label>
+            <input type="text" id="article-category" placeholder="Category">
+          </label>
+          <label>
+            <textarea type="text" id="article-body" rows="8" cols="40" placeholder="Body"></textarea>
+          </label>
+          <label>
+            <input type="text" id="article-author" placeholder="Author">
+          </label>
+          <label>
+            <input type="text" id="article-author-url" placeholder="Website">
+          </label>
+          <input type="submit">
+        </form>
+      </section>
 
-    <section id="new-post">
-      <form id="input-new-article">
-        <label>
-          <input type="text" id="article-title" placeholder="Title">
-        </label>
-        <label>
-          <input type="text" id="article-category" placeholder="Category">
-        </label>
-        <label>
-          <textarea type="text" id="article-body" rows="8" cols="40" placeholder="Body"></textarea>
-        </label>
-        <label>
-          <input type="text" id="article-author" placeholder="Author">
-        </label>
-        <label>
-          <input type="text" id="article-author-url" placeholder="Website">
-        </label>
-        <input type="submit">
-      </form>
-    </section>
+      <section id="preview">
+      </section>
 
-    <section id="preview">
-    </section>
-
-    <section id="article-json"></section>
-
+      <section id="article-json"></section>
+    </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="scripts/blogArticles.js" type="text/javascript"></script>
@@ -63,7 +80,7 @@
     <script src="scripts/new-art.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.0.0/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js"></script>
-
   </body>
 </html>
