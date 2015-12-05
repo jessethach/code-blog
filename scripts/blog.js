@@ -65,7 +65,7 @@ blog.selectListCat = function() {
         blog.render();
       });
     } else {
-    $('main').find('article:not(:contains(' + this.value + '))').hide();
+      $('main').find('article:not(:contains(' + this.value + '))').hide();
     //need to find category class
     }
   });
@@ -82,7 +82,7 @@ blog.selectListAuth = function() {
         blog.render();
       });
     } else {
-    $('main').find('article:not(:contains(' + this.value + '))').hide();
+      $('main').find('article:not(:contains(' + this.value + '))').hide();
     }
   });
 };
