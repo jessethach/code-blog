@@ -14,15 +14,17 @@
     </title>
     <script id="entry-template" type="text/article-template">
       <article class="entry post">
-        <h3 class="title">{{{blogTitle}}}</h3>
-        <div class="author">{{author}}</div>
-        <div class="author-web"><a>{{{authorUrl}}}</a></div>
-        <div class="category">{{category}}</div>
-        <div class="published">Published {{publishedOn}} days ago</div>
-        <div class="body">
+        <section class="article-content">
+          <h3 class="title">{{{blogTitle}}}</h3>
+          <div class="author">{{author}}</div>
+          <div class="author-web"><a>{{{authorUrl}}}</a></div>
+          <div class="category">{{category}}</div>
+          <div class="published">Published {{publishedOn}} days ago</div>
+          <div class="body">
           {{{articleBody}}}
           <div class="read-more"><a>Read More</a></div>
-        </div>
+          </div>
+        </section>
       </article>
     </script>
   </head>
