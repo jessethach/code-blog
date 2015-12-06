@@ -1,6 +1,13 @@
 /* Mobile first
 ––––––––––––––––––––––––––––––––––––––––––––––––––*/
 /*Header and navigation*/
+
+@@media screen and {max-width:360px) {
+  display: inline-flex;
+}
+
+}
+
 header {
   background-color: #92CDCF;
   text-align: center;
