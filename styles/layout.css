@@ -8,7 +8,7 @@ header {
   border: 1px solid #445878;
 }
 
-header ol {
+header ul {
   margin: 0px;
   padding: 15px 15px 15px 30px;
 }
@@ -22,11 +22,15 @@ header li {
   flex: 1 100%;
 }
 
+.icon-git {
+  background: url(images/git-icon.png);
+}
+
 /*Main body*/
-body {
+main {
   color: #4d4e53;
 }
-body img {
+main img {
   max-height:75%;
   max-width: 75%;
   display: block;
