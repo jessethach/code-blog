@@ -1,3 +1,7 @@
+if (typeof blog === 'undefined') {
+  var blog = {};
+}
+
 // Creating empty articles array
 blog.articles = [];
 

@@ -7,26 +7,9 @@
     <link rel="stylesheet" type="text/css" href="styles/skeleton.css" />
     <link rel="stylesheet" type="text/css" href="styles/layout.css" />
     <link rel="stylesheet" type="text/css" href="styles/state.css" />
-    <!-- Hamburger menu mod -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/module.css" /> -->
     <title>
       Jess Blog
     </title>
-    <script id="entry-template" type="text/article-template">
-      <article class="entry post">
-        <section class="article-content">
-          <h3 class="title">{{{blogTitle}}}</h3>
-          <div class="author">{{author}}</div>
-          <div class="author-web"><a>{{{authorUrl}}}</a></div>
-          <div class="category">{{category}}</div>
-          <div class="published">Published {{publishedOn}} days ago</div>
-          <div class="body">
-          {{{articleBody}}}
-          <div class="read-more"><a>Read More</a></div>
-          </div>
-        </section>
-      </article>
-    </script>
   </head>
   <body>
       <main class="container site-wrap">
@@ -37,14 +20,11 @@
           <nav>
             <span="icon-menu"></span>
             <ul class="navigation">
-              <li class="icon-home nav-item"> <a id="articles-tab" class="optional_has_click">Articles</a></li>
-              <li class="icon-about nav-item"> <a id="about" class="optional_has_click">About</a></li>
+              <li class="icon-home nav-item"> <a id="articles-tab" class="optional-has-click">Articles</a></li>
+              <li class="icon-about nav-item"> <a id="about" class="optional-has-click">About</a></li>
               <li class="icon-twitter nav-item"><a href="https://twitter.com/jesse_thach">Twitter</a></li>
               <li class="icon-git nav-item"><a href="https://github.com/jessethach">Github</a></li>
             </ul>
-            <!-- For hamburger menu mod -->
-            <!-- <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-            <label for="nav-trigger"></label> -->
           </nav>
         </header>
         <section class= "hide about-me" id="tab-about">
@@ -60,19 +40,9 @@
               <option class="authors" id="select-hold" value="none">--Filter by author--</option>
             </select>
           </form>
-          <!-- <article id="template">
-            <h1 class="title"></h1>
-            <div class="author"></div>
-            <div class="author-web"></div>
-            <div class="category"></div>
-            <div class="published"></div>
-            <div class="body"></div>
-            <div class="read-more"></div>
-          </article> -->
       </section>
       </main>
     <footer>
-
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
