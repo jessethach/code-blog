@@ -1,5 +1,7 @@
 var blog = {};
 blog.rawData = [
+  {"author":"Al She","title":"Linux is Awesome","category":"Software","markdown":"Linux is *amazing*. It is stable, efficient, fast, open source, and great for software developers.\n\nIt runs on MacBooks (with some caveats), most windows laptops, and desktop PCs.","body":"<p>Linux is <em>amazing</em>. It is stable, efficient, fast, open source, and great for software developers.</p>\n<p>It runs on MacBooks (with some caveats), most windows laptops, and desktop PCs.</p>\n","publishedOn":"2015-12-03"},
+  {"author":"Brook R","title":"An Example Article","category":"javascript","body":"<h1>It has a main header</h1>\n\n<p>and a first paragraph... Which is exciting! To get the reader interested!</p>\n\n<h2>A Subheader</h2>\n\n<p>And even a 2nd paragraph, that is followed by a list: </p>\n\n<ul><li>of</li><li>words</li><li>in</li><li>markdown.</li></ul>\n\n<p>How does code look? Indent using 4 spaces.</p>\n\n<pre><code>function foo(bar) { \n  var baz = 12; \n  return bar * baz; \n}</code></pre>\n\n<p>The end.</p>","publishedOn":"2015-11-18"},
   {
     blogTitle:       'Bacon Ipsum',
     category:    'food',
