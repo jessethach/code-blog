@@ -1,35 +1,46 @@
+//Creating stats object
 var stats = {};
 
+//Using raw data temporarily before plugging JSON
 var dataSet = blog.rawData;
 
+//Creating empty array for authors in order to chain a JQuery unique method
 var authorsStats = [];
 var articlesStats = [];
 
-
-//function to pass into the .map argument
-stats.getEach = function (el) {
-  console.log(el.author);
-  return el.author;
+//Mapping method used to pluck out properties from an array
+stats.pluck = function(property, collection) {
+  var plucked = collection.map(function (item) {
+    return item[property];
+  });
+  return plucked;
 };
 
-stats.placeAuthors = function () {
-  var temp = dataSet.map(stats.getEach);
-  authorsStats = temp;//pushing into articlesStats array
+//Creating function to pass into .map on articleBody as a callback
+stats.mapSplit = function (x) {
+  return x.split(' ').length;
+};
+
+//This function will render the values on to the web page
+stats.renderCounts = function () {
+  var authorsStats = stats.pluck('author', dataSet);//pluck function called
+  var bodies = stats.pluck('articleBody', dataSet);//pluck function called
+  var countBodies = bodies.map(stats.mapSplit);//mapSplit function called
   var $array = $.unique(authorsStats);
-  console.log($array.length);
+  $('#stats').append($array.length);
+  // $('#stats-body').append(countBodies);
 };
 
-// stats.prototype.populateStats = function () {
-//
-// };
+stats.placeArticlesNumber = function() {
+  $('stats').append(dataSet.length);
+};
 
-// stats.prototype.authUniqueStats = _.uniq(authorsStats);
-//
 // function $numberOfArticles(articles) {
 //   return $('<p>Number of article: ' + ariticles.length + '</p>');
 // };
 
 $(document).ready(function() {
-  stats.placeAuthors();
+  stats.renderCounts();
+  stats.placeArticlesNumber();
+  // $.getJSON('scripts/hackeripsum.json', dataSet);
 });
-// $.getJSON('scripts/blogArticles.js', stats),
