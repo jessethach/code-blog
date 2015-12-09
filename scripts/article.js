@@ -12,8 +12,8 @@ Article.categories = [];
 Article.authors = [];
 
 blog.compileTemplate = function() {
-    $.get( 'templates/articles.handlebars', function(data) {
-      Article.prototype.compiled = Handlebars.compile(data);
+  $.get( 'templates/articles.handlebars', function(data) {
+    Article.prototype.compiled = Handlebars.compile(data);
   }).done(function() {
     blog.render();
   });
