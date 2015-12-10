@@ -4,6 +4,27 @@ if (typeof blog === 'undefined') {
 
 // Creating empty articles array
 blog.articles = [];
+blog.arcticlesReal = [];
+
+blog.fetchJSON = function() {
+  $.getJSON('scripts/hackeripsum.json', blog.updateFromJSON);
+};
+
+// Drop old records and insert new into db and blog object:
+blog.updateFromJSON = function (data) {
+  // Iterate over new article JSON:
+  data.forEach(function(item) {
+    // Instantiate an article based on item from JSON:
+    var article = new Article(item);
+
+    // Add the article to blog.articles
+    blog.articlesReal.push(article);
+
+    // Cache the article in DB
+    // TODO: Trigger SQL here...
+  });
+  blog.initArticles();
+};
 
 // Sorting the raw data using a callback method
 blog.sortRawData = function() {
@@ -22,6 +43,15 @@ blog.render = function() {
     Article.categories = Article.categories.unique();
     Article.authors = Article.authors.unique();
   }
+};
+
+//Function that will render the data that is taken from raw data
+blog.compileTemplate = function() {
+  $.get( 'templates/articles.handlebars', function(data) {
+    Article.prototype.compiled = Handlebars.compile(data);
+  }).done(function() {
+    blog.render();
+  });
 };
 
 //Creating function to populate select menu with unique array of categories
@@ -110,3 +140,16 @@ blog.articlesTab = function () {
     $('#tab-about').fadeOut();
   });
 };
+
+
+/////////////////////////////////////////////////////////////////
+
+// blog.fetchJSON = function() {
+//   $.getJSON('scripts/blogArticles.json', blog.updateFromJSON);
+// };
+//
+// blog.fethFromDbB = function (callback) {
+//   callback = callback || function(ele) {
+//
+//   }
+// };

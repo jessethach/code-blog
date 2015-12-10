@@ -1,5 +1,6 @@
 // Calling sortRawData and render methods
 $(document).ready(function() {
+  webDB.init();
   blog.sortRawData();
   blog.compileTemplate();
   blog.shortenArticles();
