@@ -11,14 +11,6 @@ var Article = function(obj) {
 Article.categories = [];
 Article.authors = [];
 
-blog.compileTemplate = function() {
-  $.get( 'templates/articles.handlebars', function(data) {
-    Article.prototype.compiled = Handlebars.compile(data);
-  }).done(function() {
-    blog.render();
-  });
-};
-
 // Creating a function in the constructor to clone html markup and populate it with new data
 Article.prototype.toHTML = function () {
   Article.categories.push(this.category);
@@ -27,6 +19,59 @@ Article.prototype.toHTML = function () {
   var html = this.compiled(this);
   $('.article-home').append(html);
 };
+
+
+// Article.prototype.insertRecord = function(a) {
+//   webDB.execute(
+//     html5sql.process(
+//       [
+//         {
+//           'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, articleBody) VALUES (?, ?, ?, ?, ?, ?);',
+//           'data': [a.title, a.author, a.authorUrl, a.category, a.publishedOn, a.articleBody],
+//         }
+//       ],
+//       function () {
+//         console.log('Success inserting record for ' + a.title);
+//       })
+//   );
+// };
+//
+//
+// Article.prototype.insertRecord = function(callback) {
+//   // insert article record into database
+//   webDB.execute(
+//     // TODO: Add SQL here...
+//     ,
+//     callback
+//   );
+// };
+//
+// Article.prototype.updateRecord = function(callback) {
+//   //update article record in databse
+//   webDB.execute(
+//     // TODO: Add SQL here...
+//     ,
+//     callback
+//   );
+// };
+//
+// Article.prototype.deleteRecord = function(callback) {
+//   // Delete article record in database
+//   webDB.execute(
+//     // TODO: Add SQL here...
+//     ,
+//     callback
+//   );
+// };
+//
+// Article.prototype.truncateTable = function(callback) {
+//   // Delete all records from given table.
+//   webDB.execute(
+//     // TODO: Add SQL here...
+//     ,
+//     callback
+//   );
+// };
 
 // Credit to http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array
 Array.prototype.contains = function(v) {

@@ -5,8 +5,12 @@ var stats = {};
 var dataSet = blog.rawData;
 
 //Creating empty array for authors in order to chain a JQuery unique method
-var authorsStats = [];
+var authorsUnique = [];
 var articlesStats = [];
+
+// stats.getAllArticles = function(rawJSON) {
+//   stats.allArticles = rawJSON;
+// };
 
 //Mapping method used to pluck out properties from an array
 stats.pluck = function(property, collection) {
@@ -17,22 +21,29 @@ stats.pluck = function(property, collection) {
 };
 
 //Creating function to pass into .map on articleBody as a callback
-stats.mapSplit = function (x) {
+stats.mapSplit = function(x) {
   return x.split(' ').length;
 };
 
-//This function will render the values on to the web page
-stats.renderCounts = function () {
-  var authorsStats = stats.pluck('author', dataSet);//pluck function called
-  var bodies = stats.pluck('articleBody', dataSet);//pluck function called
-  var countBodies = bodies.map(stats.mapSplit);//mapSplit function called
-  var $array = $.unique(authorsStats);
-  $('#stats').append($array.length);
-  // $('#stats-body').append(countBodies);
+stats.wordFilter = function (str) {
+  return str.replace(/[#,\n]/g, ' ').match(/\b\w+/g);
 };
 
-stats.placeArticlesNumber = function() {
-  $('stats').append(dataSet.length);
+stats.wordCount = function() {
+  var bodies = stats.pluck('articleBody', dataSet);//pluck function called
+  var countBodies = bodies.map(stats.mapSplit);//mapSplit function called
+  $('#stats').append('<p>Number of Words: ' + countBodies + '</p>');
+};
+
+//This function will render the values on to the web page
+stats.renderAuthorCount = function () {
+  var authorsStats = stats.pluck('author', dataSet);//pluck function called
+  var $uniqueAuthors = $.unique(authorsStats);
+  $('#stats').append('<p>Number of Authors: ' + $uniqueAuthors.length + '</p>');
+};
+
+stats.renderArticlesCount = function() {
+  $('#stats').append('<p>Number of Articles: ' + dataSet.length + '</p>');
 };
 
 // function $numberOfArticles(articles) {
@@ -40,7 +51,8 @@ stats.placeArticlesNumber = function() {
 // };
 
 $(document).ready(function() {
-  stats.renderCounts();
-  stats.placeArticlesNumber();
+  stats.wordCount();
+  stats.renderAuthorCount();
+  stats.renderArticlesCount();
   // $.getJSON('scripts/hackeripsum.json', dataSet);
 });
