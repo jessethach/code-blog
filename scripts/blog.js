@@ -1,16 +1,42 @@
-if (typeof blog === 'undefined') {
-  var blog = {};
-}
+blog = {};
 
 // Creating empty articles array
 blog.articles = [];
-blog.arcticlesReal = [];
+blog.arcticles = [];
+
+blog.loadArticles = function() {
+  $.get('templates/articles.handlebars', function(data, message, xhr) {
+    Article.prototype.template = Handlebars.compile(data);
+    $.ajax({
+      type: 'HEAD',
+      url: 'scripts/blogArticles.json',
+      success: blog.fetchArticles
+    });
+  });
+};
+
+blog.fetchArticles = function(data, message, xhr) {
+  var eTag = xhr.getResponseHeader('eTag');
+  if (typeof localStorage.articlesEtag == 'undefined' || localStorage.articlesEtag != eTag) {
+    console.log('cache miss!');
+    localStorage.articlesEtag = eTag;
+
+    // Remove all prior articles from the DB, and from blog:
+    blog.articles = [];
+    webDB.execute(
+      'DELETE FROM articles;',//DESTROYS EVERYTHING before fetching JSON
+      blog.fetchJSON);
+  } else {
+    console.log('cache hit!');
+    blog.fetchFromDB();
+  }
+};
 
 blog.fetchJSON = function() {
   $.getJSON('scripts/hackeripsum.json', blog.updateFromJSON);
 };
 
-// Drop old records and insert new into db and blog object:
+// Callback for fetchJSON; drop old records and insert new into db and blog object:
 blog.updateFromJSON = function (data) {
   // Iterate over new article JSON:
   data.forEach(function(item) {
@@ -18,43 +44,94 @@ blog.updateFromJSON = function (data) {
     var article = new Article(item);
 
     // Add the article to blog.articles
-    blog.articlesReal.push(article);
+    blog.articles.push(article);
 
     // Cache the article in DB
-    // TODO: Trigger SQL here...
+    article.insertRecord();
   });
   blog.initArticles();
 };
 
-// Sorting the raw data using a callback method
-blog.sortRawData = function() {
-  blog.rawData.sort(function(a, b) {
-    if (a.publishedOn > b.publishedOn) {return -1;}
-    if (a.publishedOn < b.publishedOn) {return 1;}
-    return 0;
-  });
+blog.fetchFromDB = function(callback) {
+  callback = callback || function() {};
+
+  // Fetch all articles from db.
+  webDB.execute(
+    'SELECT * FROM articles ORDER BY publishedOn DESC;',
+    function (resultArray) {
+      resultArray.forEach(function(ele) {
+        blog.articles.push(new Article(ele));
+      });
+
+      blog.initArticles();
+      callback();
+    }
+  );
 };
 
-//For loop to call each object
-blog.render = function() {
-  for (var i = 0; i < blog.rawData.length; i++) {
-    var art = new Article(blog.rawData[i]);
-    art.toHTML();
-    Article.categories = Article.categories.unique();
-    Article.authors = Article.authors.unique();
-  }
+// blog.initArticles = function() {
+//   // blog.sortArticles(); NOT NECESSARY
+//
+//   // Only render if the current page has somewhere to put all the articles
+//   if ($('#article-sect').length) {
+//     blog.render();
+//   }
+// };
+
+
+// Sorting the raw data using a callback method; OLD CODE
+// blog.sortRawData = function() {
+//   blog.rawData.sort(function(a, b) {
+//     if (a.publishedOn > b.publishedOn) {return -1;}
+//     if (a.publishedOn < b.publishedOn) {return 1;}
+//     return 0;
+//   });
+// };
+
+//BLog object that will render the articles
+// blog.render = function() {
+//   blog.articles.forEach(blog.appendArticle);
+
+
+//   $('pre code').each(function(i, block) {
+//     hljs.highlightBlock(block);
+//   });
+//
+//   blog.setTeasers();
+//   blog.populateFilters();
+// };
+
+// blog.appendArticle = function(a) {
+//   $('#article-sect').append((new Article(a)).toHtml());
+// };
+
+blog.clearAndFetch = function () {
+  blog.articles = [];
+  blog.fetchFromDB(blog.exportJSON);
 };
 
-//Function that will render the data that is taken from raw data
-blog.compileTemplate = function() {
-  $.get( 'templates/articles.handlebars', function(data) {
-    Article.prototype.compiled = Handlebars.compile(data);
-  }).done(function() {
-    blog.render();
-  });
-};
+//For loop to call each object; OLD CODE
+// blog.render = function() {
+//   for (var i = 0; i < blog.rawData.length; i++) {
+//     var art = new Article(blog.rawData[i]);
+//     // art.toHTML();
+//     Article.categories = Article.categories.unique();
+//     Article.authors = Article.authors.unique();
+//   }
+// };
 
-//Creating function to populate select menu with unique array of categories
+//Function that will render the data that is taken from raw data; OLD CODE
+// blog.compileTemplate = function() {
+//   $.get( 'templates/articles.handlebars', function(data) {
+//     Article.prototype.compiled = Handlebars.compile(data);
+//   }).done(function() {
+//     blog.render();
+//   });
+// };
+
+// blog.initNewArticlePage
+
+//Creating function to populate select menu with unique array of categories; OLD CODE
 blog.toSelect = function (array) {
   for (var i = 0; i < array.length; i++) {
     if (array === Article.categories) { //If array in the instance matched the unique categories array, then populate
@@ -75,7 +152,7 @@ blog.toSelect = function (array) {
   };
 };
 
-//After lead-in paragraph, reveal only on button click
+//After lead-in paragraph, reveal only on button click; OLD CODE
 blog.shortenArticles = function (event) {
   $('.read-more').css( 'cursor', 'pointer' );
   $('.author-web').css( 'cursor', 'pointer' );
@@ -87,7 +164,7 @@ blog.shortenArticles = function (event) {
   });
 };
 
-//Creating a select list event listeners
+//Creating a select list event listeners; OLD CODE
 blog.selectListCat = function() {
   $('#filter-cat').change(function() {
     console.log(this.value);
@@ -105,6 +182,7 @@ blog.selectListCat = function() {
   });
 };
 
+//OLD CODE
 blog.selectListAuth = function() {
   $('#filter-auth').change(function() {
     console.log(this.value);
@@ -121,7 +199,7 @@ blog.selectListAuth = function() {
   });
 };
 
-//Creating a tab method
+//Creating a tab method;
 blog.aboutTab = function () {
   $('.nav-item').css( 'cursor', 'pointer' );
   $('#tab-about').hide();
@@ -140,16 +218,3 @@ blog.articlesTab = function () {
     $('#tab-about').fadeOut();
   });
 };
-
-
-/////////////////////////////////////////////////////////////////
-
-// blog.fetchJSON = function() {
-//   $.getJSON('scripts/blogArticles.json', blog.updateFromJSON);
-// };
-//
-// blog.fethFromDbB = function (callback) {
-//   callback = callback || function(ele) {
-//
-//   }
-// };

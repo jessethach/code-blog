@@ -1,92 +1,109 @@
-// Creating Article object
-var Article = function(obj) {
-  this.blogTitle = obj.blogTitle;
-  this.author = obj.author;
-  this.authorUrl = obj.authorUrl;
-  this.category = obj.category;
-  this.publishedOn = obj.publishedOn;
-  this.articleBody = obj.articleBody;
-};
+// // Creating Article object; OLD CODE
+// var Article = function(obj) {
+//   this.blogTitle = obj.blogTitle;
+//   this.author = obj.author;
+//   this.authorUrl = obj.authorUrl;
+//   this.category = obj.category;
+//   this.publishedOn = obj.publishedOn;
+//   this.articleBody = obj.articleBody;
+// };
+//
+// Article.categories = [];//OLD CODE
+// Article.authors = [];//OLD CODE
 
-Article.categories = [];
-Article.authors = [];
+function Article (opts) {
+  Object.keys(opts).forEach(function(propName, index, keys) {
+    this[propName] = opts[propName];
+  },this);
+
+  this.body = opts.body || marked(this.markdown);
+}
+
+Article.prototype.template = '';
 
 // Creating a function in the constructor to clone html markup and populate it with new data
 Article.prototype.toHTML = function () {
-  Article.categories.push(this.category);
-  Article.authors.push(this.author);
-  this.publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000); //Credit to Ivan Storck
-  var html = this.compiled(this);
-  $('.article-home').append(html);
+  // Article.categories.push(this.category);
+  // Article.authors.push(this.author);
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000); //Credit to Ivan Storck
+
+  this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
+
+  return this.template(this);
+  // var html = this.compiled(this);
+  // $('.article-home').append(html);
 };
 
 
-// Article.prototype.insertRecord = function(a) {
-//   webDB.execute(
-//     html5sql.process(
-//       [
-//         {
-//           'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, articleBody) VALUES (?, ?, ?, ?, ?, ?);',
-//           'data': [a.title, a.author, a.authorUrl, a.category, a.publishedOn, a.articleBody],
-//         }
-//       ],
-//       function () {
-//         console.log('Success inserting record for ' + a.title);
-//       })
-//   );
-// };
-//
-//
-// Article.prototype.insertRecord = function(callback) {
-//   // insert article record into database
-//   webDB.execute(
-//     // TODO: Add SQL here...
-//     ,
-//     callback
-//   );
-// };
-//
-// Article.prototype.updateRecord = function(callback) {
-//   //update article record in databse
-//   webDB.execute(
-//     // TODO: Add SQL here...
-//     ,
-//     callback
-//   );
-// };
-//
-// Article.prototype.deleteRecord = function(callback) {
-//   // Delete article record in database
-//   webDB.execute(
-//     // TODO: Add SQL here...
-//     ,
-//     callback
-//   );
-// };
-//
-// Article.prototype.truncateTable = function(callback) {
-//   // Delete all records from given table.
-//   webDB.execute(
-//     // TODO: Add SQL here...
-//     ,
-//     callback
-//   );
-// };
-
-// Credit to http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array
-Array.prototype.contains = function(v) {
-  for(var i = 0; i < this.length; i++) {
-    if(this[i] === v) return true;
-  }
-  return false;
+Article.prototype.insertRecord = function(a) {
+  webDB.execute(
+    [
+      {
+        'sql': 'INSERT INTO articles (title, author, authorUrl, category, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?);',
+        'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.markdown],
+      }
+    ],
+      function () {
+        console.log('Success inserting record for ' + this.title);
+      }
+  );
 };
 
-Array.prototype.unique = function () {
-  var arr = [];
-  for(var i = 0; i < this.length; i++) {
-    if(!arr.contains(this[i])) {
-      arr.push(this[i]);
+Article.prototype.updateRecord = function(callback) {
+  //update article record in databse
+  webDB.execute(
+    [
+      {
+        'sql': 'UPDATE articles SET title=?, author=?, authorUrl=?, category=?, publishedOn=?, markdown=? WHERE id=?;',
+        'data': [this.title, this.author, this.authorUrl, this.category, this.publishedOn, this.markdown, this.id],
+      }
+    ],
+    function () {
+      console.log('Success updating record for ' + this.title);
     }
-  }
-  return arr;
+  );
 };
+
+Article.prototype.deleteRecord = function(callback) {
+  // Delete article record in database
+  webDB.execute(
+    [
+      {
+        'sql': 'DELETE FROM articles WHERE id=?;',
+        'data': [this.id],
+      }
+    ],
+      function () {
+        console.log('Success deleting record');
+      }
+  );
+};
+
+Article.prototype.truncateTable = function(callback) {
+  // Delete all records from given table.
+  webDB.execute(
+    'TRUNCATE TABLE articles;',
+    function() {
+      // on success
+      console.log('Success setting up tables.');
+    }
+  );
+};
+
+// Credit to http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array //OLD CODE
+// Array.prototype.contains = function(v) {
+//   for(var i = 0; i < this.length; i++) {
+//     if(this[i] === v) return true;
+//   }
+//   return false;
+// };
+//
+// Array.prototype.unique = function () {
+//   var arr = [];
+//   for(var i = 0; i < this.length; i++) {
+//     if(!arr.contains(this[i])) {
+//       arr.push(this[i]);
+//     }
+//   }
+//   return arr;
+// };
