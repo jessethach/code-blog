@@ -3,10 +3,10 @@ blog.renderPreview = function(event) {
   var title = $('#article-title').val();
   console.log(title);
   var category = $('#article-category').val();
-  var body = $('#article-body').val();
+  var markdown = $('#article-body').val();
   var author = $('#article-author').val();
   var authorUrl = $('#article-author-url').val();
-  var publishedOn = '2015-10-10';
+  var publishedOn = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   $('#preview').append(title);
   $('#preview').append(category);
   $('#preview').append(marked(body));
@@ -15,7 +15,7 @@ blog.renderPreview = function(event) {
   $('pre code').each(function (i, block) {
     hljs.highlightBlock(block);
   });
-  var stored = {author: author, authorURL: authorUrl, category: category, publishedOn: publishedOn, body: body};
+  var stored = [title, author, authorUrl, category, publishedOn, markdown];//Array to use in the insertRecord method
   var storedArt = JSON.stringify(stored);
   $('#article-json').html(storedArt);
   webDB.insertRecord(stored);

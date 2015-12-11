@@ -1,4 +1,3 @@
-var blog = {};
 blog.rawData = [
   {
     blogTitle:       'Bacon Ipsum',
